@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/20 18:15:26 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:38:46 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	ft_atoi(char *str, char **args)
 	}
 	while (str[i])
 	{
-		if (((-num * 10 - (str[i] - '0')) < INT_MIN) || ((num * 10 + (str[i] - '0')) > INT_MAX))
-			wrong_number(args);
 		num = num * 10 + (str[i] - '0');
 		i++;
+		if (sign * num  < INT_MIN || sign * num > INT_MAX)
+			wrong_number(args);
 	}
 	return (num * sign);
 }
