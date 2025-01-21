@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/20 16:02:42 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:37:32 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	**args_combinor(char **av);
 void	free_array(char **str);
 int		ft_strlen(char *str);
-int		ft_atoi(char *str, char **args);
-void	wrong_number(char **args);
+int		ft_atoi(char *str, char **args, t_list *lst);
+void	wrong_number(char **args, t_list *lst);
+t_list	*stack_filler(char **args);
+int		ft_lst_add_back(t_list **lst, int content);
+t_list	*ft_lst_new(int content);
+void	free_linked_list(t_list **lst);
+void	check_doubles(t_list *lst);
 
 #endif

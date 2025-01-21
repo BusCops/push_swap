@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/20 18:38:46 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:25:50 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ void	free_array(char **str)
 	free(str);
 }
 
-void	wrong_number(char **args)
+void	wrong_number(char **args, t_list *lst)
 {
 	free_array(args);
+	free_linked_list(&lst);
 	write(2, "Error\n", 6);
-	exit(4);
+	exit(5);
 }
 
-int	ft_atoi(char *str, char **args)
+int	ft_atoi(char *str, char **args, t_list *lst)
 {
 	int		i;
 	int		sign;
@@ -47,8 +48,35 @@ int	ft_atoi(char *str, char **args)
 	{
 		num = num * 10 + (str[i] - '0');
 		i++;
-		if (sign * num  < INT_MIN || sign * num > INT_MAX)
-			wrong_number(args);
+		if (sign * num < INT_MIN || sign * num > INT_MAX)
+			wrong_number(args, lst);
 	}
 	return (num * sign);
+}
+
+t_list	*ft_lst_new(int content)
+{
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->data = content;
+	new->next = NULL;
+	return (new);
+}
+
+int	ft_lst_add_back(t_list **lst, int content)
+{
+	t_list	*new;
+	t_list	*last;
+
+	new = ft_lst_new(content);
+	if (!new)
+		return (-1);
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
+	return (0);
 }

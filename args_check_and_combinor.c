@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:58:29 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/20 15:56:58 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:24:26 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ char	**args_check(int ac, char **av)
 	args = args_combinor(av);
 	if (!args)
 		exit(3);
+    if (!args[0])
+	{
+		free_array(args);
+		exit(4);
+	}
 	return (args);
 }
 
@@ -80,4 +85,27 @@ char	**args_combinor(char **av)
 	args = ft_split(tmp1, ' ');
 	free(tmp1);
 	return (args);
+}
+
+t_list	*stack_filler(char **args)
+{
+	t_list	*new;
+	int		i;
+
+	i = 0;
+	new = NULL;
+	new = ft_lst_new(ft_atoi(args[i], args, new));
+	if (!new)
+		return (NULL);
+	i++;
+	while (args[i])
+	{
+		if(ft_lst_add_back(&new, ft_atoi(args[i], args, new)) == -1)
+			{
+				free_linked_list(&new);
+				return (NULL);
+			}
+		i++;
+	}
+	return (new);
 }
