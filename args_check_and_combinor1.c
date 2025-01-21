@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_check_and_combinor.c                          :+:      :+:    :+:   */
+/*   args_check_and_combinor1.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:58:29 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 14:24:26 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:46:33 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**args_check(int ac, char **av)
 	args = args_combinor(av);
 	if (!args)
 		exit(3);
-    if (!args[0])
+	if (!args[0])
 	{
 		free_array(args);
 		exit(4);
@@ -100,11 +100,11 @@ t_list	*stack_filler(char **args)
 	i++;
 	while (args[i])
 	{
-		if(ft_lst_add_back(&new, ft_atoi(args[i], args, new)) == -1)
-			{
-				free_linked_list(&new);
-				return (NULL);
-			}
+		if (ft_lst_add_back(&new, ft_atoi(args[i], args, new)) == -1)
+		{
+			free_linked_list(&new);
+			return (NULL);
+		}
 		i++;
 	}
 	return (new);

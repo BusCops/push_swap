@@ -6,21 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 14:25:50 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:41:36 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_array(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
-}
 
 void	wrong_number(char **args, t_list *lst)
 {

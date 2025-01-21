@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 14:37:32 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:10:11 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,16 @@ int		ft_lst_add_back(t_list **lst, int content);
 t_list	*ft_lst_new(int content);
 void	free_linked_list(t_list **lst);
 void	check_doubles(t_list *lst);
+void	sa(t_list *a);
+void	sb(t_list *b);
+void	ss(t_list *a, t_list *b);
+void	pa(t_list **a, t_list **b);
+void	pb(t_list **a, t_list **b);
+void	ra(t_list **a);
+void	rb(t_list **b);
+void	rr(t_list **a, t_list **b);
+void	rra(t_list **a);
+void	rrb(t_list **b);
+void	rrr(t_list **a, t_list **b);
 
 #endif
