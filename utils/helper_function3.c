@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 15:10:52 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:24:02 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_lst_size(t_list *lst)
 
 	i = 0;
 	if (!lst)
-		return 0;
+		return (0);
 	while (lst)
 	{
 		lst = lst->next;

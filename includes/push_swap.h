@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 16:00:36 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:37:35 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ void	rra(t_list **a);
 void	rrb(t_list **b);
 void	rrr(t_list **a, t_list **b);
 int		ft_lst_size(t_list *lst);
-int 	check_if_sorted(t_list *a);
+int		check_if_sorted(t_list *a);
 void	lets_sort_it(t_list **a, t_list **b);
 void	detect_range(t_list **a, t_list **b);
 t_list	*lst_last(t_list *last);
 void	algo_num_1(t_list *a);
+int		pivot(t_list *a);
+int		mid_number(int first, int mid, int last);
+//void	insertion_sort2(t_list **a, t_list **b);
+void	quick_sort(t_list **a, t_list **b);
+
 #endif
