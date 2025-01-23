@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 15:11:06 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:00:51 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	detect_range(t_list **a, t_list **b)
 	int	i;
 	
 	i = ft_lst_size(*a);
-	if (i <= 3)
-		algo_num_1(a);
-	else
-		algo_num_2(*a);
+	if (i <= 20)
+		algo_num_1(*a);
+
 	(void)b;
 }
 
