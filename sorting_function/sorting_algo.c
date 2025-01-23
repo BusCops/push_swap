@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 14:33:06 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:14:42 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	algo_num_1(t_list **a)
 {
@@ -47,3 +47,4 @@ void	algo_num_2(t_list *a)
 		a = start;
 	}
 }
+

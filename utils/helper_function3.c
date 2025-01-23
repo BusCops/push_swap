@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 11:23:15 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:10:52 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	wrong_number(char **args, t_list *lst)
 {

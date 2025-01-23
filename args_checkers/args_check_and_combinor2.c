@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:34 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 11:44:47 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:11:13 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	double_founded(t_list *lst)
 {

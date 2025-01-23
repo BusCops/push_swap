@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 14:24:50 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:11:06 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	lets_sort_it(t_list **a, t_list **b)
 {

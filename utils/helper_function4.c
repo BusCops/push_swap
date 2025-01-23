@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:03:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:26:24 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:45:13 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 t_list	*lst_last(t_list *lst)
 {

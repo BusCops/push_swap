@@ -6,11 +6,11 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:58:29 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 17:46:33 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:10:42 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 char	**args_check(int ac, char **av)
 {
