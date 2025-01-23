@@ -1,50 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_function4.c                                 :+:      :+:    :+:   */
+/*   sorting_algo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 12:03:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 13:26:24 by abenzaho         ###   ########.fr       */
+/*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
+/*   Updated: 2025/01/23 14:33:06 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*lst_last(t_list *lst)
+void	algo_num_1(t_list **a)
 {
 	t_list	*last;
 
-	last = lst;
-	while (last && last->next)
-	{
-		last = last->next;
-	}
-	return (last);
+	last = lst_last(*a);
+	if ((*a)->data > (*a)->next->data)
+		sa(*a);
+	if ((*a)->next->data > last->data)
+		rra(a);
+	if ((*a)->data > (*a)->next->data)
+		sa(*a);
 }
 
-void	free_linked_list(t_list **lst)
+void	algo_num_2(t_list *a)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
+	int		i;
+	t_list	*start;
 
-	tmp = *lst;
-	while (tmp)
+	start = a;
+	i = 1;
+	while (i != 0)
 	{
-		tmp2 = tmp->next;
-		free(tmp);
-		tmp = tmp2;
+		i = 0;
+		while (a && a->next)
+		{
+			if (a->data > a->next->data)
+			{
+				sa(a);
+				i++;
+			}
+			a = a->next;
+		}
+		a = start;
 	}
-	*lst = NULL;
-}
-
-void	free_array(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
 }

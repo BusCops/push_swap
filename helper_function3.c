@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:47:16 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 17:41:36 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:23:15 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,19 @@ int	ft_lst_add_back(t_list **lst, int content)
 		last = last->next;
 	last->next = new;
 	return (0);
+}
+
+int	ft_lst_size(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

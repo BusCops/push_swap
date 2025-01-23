@@ -6,15 +6,30 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 18:09:06 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:24:50 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort()
+void	lets_sort_it(t_list **a, t_list **b)
 {
+	check_doubles(*a);
+	if(check_if_sorted(*a) == 0)
+		return;
+	detect_range(a, b);
+}
+
+void	detect_range(t_list **a, t_list **b)
+{
+	int	i;
 	
+	i = ft_lst_size(*a);
+	if (i <= 3)
+		algo_num_1(a);
+	else
+		algo_num_2(*a);
+	(void)b;
 }
 
 int	main(int ac, char **av)
@@ -29,8 +44,7 @@ int	main(int ac, char **av)
 	free_array(str_num);
 	if (!a)
 		return (1);
-	check_doubles(a);
-	
+	lets_sort_it(&a,&b);
 	//test_func
 	t_list *new = a;
 	t_list *new2 = b;

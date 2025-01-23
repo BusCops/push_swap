@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:34 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/21 17:46:56 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:44:47 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,15 @@ void	check_doubles(t_list *lst)
 		tmp1 = tmp1->next;
 		tmp2 = tmp1->next;
 	}
+}
+
+int check_if_sorted(t_list *a)
+{
+	while (a->next)
+	{
+		if(a->data > a->next->data)
+			return (-1);
+		a = a->next;
+	}
+	return (0);
 }
