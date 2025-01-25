@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 18:39:53 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:26:57 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	detect_range(t_list **a, t_list **b)
 	if (i <= 20)
 		algo_num_1(*a);
 	else
-		quick_sort(a, b);
-	(void)b;
+		//quick_sort(a, b);
+		//sort_algo2(a, b);
+		sort_with_chunks(a, b);
+	//(void)b;
 }
 
 int	main(int ac, char **av)

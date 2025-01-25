@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 18:37:35 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:28:28 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int		pivot(t_list *a);
 int		mid_number(int first, int mid, int last);
 //void	insertion_sort2(t_list **a, t_list **b);
 void	quick_sort(t_list **a, t_list **b);
+void	sort_algo2(t_list **a, t_list **b);
 
 #endif
