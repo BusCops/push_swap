@@ -6,36 +6,156 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/24 18:28:21 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:18:23 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	algo_num_1(t_list *a)
+void	tree_numbers_sort(t_list **a)
 {
-	int		i;
-	t_list	*start;
+	if ((*a)->data < (*a)->next->data)
+		sa(*a);
+	if ((*a)->data > lst_last(*a)->data)
+		ra(a);
+	if ((*a)->data > (*a)->next->data)
+		sa(*a);
+}
 
-	start = a;
+void	sort_arr(int *arr, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	j = 0;
 	i = 1;
-	while (i != 0)
+	while(i)
 	{
 		i = 0;
-		while (a && a->next)
+		while(j < size - 1)
 		{
-			if (a->data > a->next->data)
+			if (arr[j] > arr[j + 1])
 			{
-				sa(a);
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
 				i++;
 			}
-			a = a->next;
+			j++;
 		}
-		a = start;
+		j = 0;
 	}
 }
 
-/*void	insertion_sort2(t_list **a, t_list **b)
+long	get_the_median(t_list *a)
+{
+	int	*arr;
+	int	size;
+	int	i;
+	int	mid;
+
+	size = ft_lst_size(a);
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		return (LONG_MAX);
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = a->data;
+		i++;
+		a = a->next;
+	}
+	sort_arr(arr, size);
+	size = size - 1;
+	mid = arr[(size / 2)];
+	return (free(arr), mid);
+}
+
+void	pre_sort(t_list **a, t_list **b)
+{
+	long	mid;
+	int		size;
+	
+	mid = get_the_median(*a);
+	if (mid == LONG_MAX)
+		return;
+	size = ft_lst_size(*a) - 1;
+	while (size)
+	{
+		if (mid >= (*a)->data)
+			pb(a, b);
+		else
+		{
+			pb(a, b);
+			rb(b);
+		}
+		size--;
+	}
+	sort(a, b);
+}
+
+int	get_the_quickest_way(int num, t_list *a)
+{
+	int	size;
+	int	i;
+
+	size = ft_lst_size(a);
+	i = 0;
+	while(a)
+	{
+		if (num > a->data)
+			break;
+		i++;
+		a = a->next;
+	}
+	if (size / 2 > i)
+		return (1);
+	return (0);
+}
+
+void	sort(t_list **a, t_list **b)
+{
+	while (*b)
+	{
+		if ((*b)->data < (*a)->data)
+			pa(a, b);
+		else if ((*b)->data > lst_last(*a)->data)
+		{
+			pa(a, b);
+			ra(a);
+		}
+		else if(get_the_quickest_way((*b)->data, *a))
+		{
+			while (*a)
+			{
+				if ((*a)->data < (*b)->data)
+				{
+					pa(a, b);
+					break ;
+				}
+				ra(a);
+			}
+		}
+		else
+		{
+			while (*a)
+			{
+				if ((*a)->data < (*b)->data)
+				{
+					ra(a);
+					pa(a, b);
+					break ;
+				}
+				rra(a);
+			}
+		}
+	}
+}
+
+
+/*
+void	insertion_sort2(t_list **a, t_list **b)
 {
 	t_list	*start;
 	int		i;
@@ -63,8 +183,8 @@ void	algo_num_1(t_list *a)
 		j--;
 	}
 	algo_num_1(*a);
-}*/
-/*
+}
+
 int	pivot(t_list *a)
 {
 	int	first;
@@ -94,8 +214,8 @@ int	mid_number(int first, int mid, int last)
 		return (mid);
 	else
 		return (last);
-}*/
-/*
+}
+
 void	quick_sort(t_list **a, t_list **b)
 {
 	int		i;
@@ -116,8 +236,7 @@ void	quick_sort(t_list **a, t_list **b)
 	algo_num_1(*b);
 	algo_num_1(*a);
 	//quick_sort(b, a);
-}*/
-
+}
 
 int	grap_the_smallest(t_list *a)
 {
@@ -184,17 +303,4 @@ void	sort_algo2(t_list **a, t_list **b)
 		pa(a, b);
 	}
 }
-
-int	find_max(t_list *a)
-{
-	int	i;
-
-	i = a->data;
-	while (a)
-	{
-		if (i < a->data)
-			i = a->data;
-		a = a->next;
-	}
-	return (i);
-}
+*/
