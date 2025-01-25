@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/25 17:18:23 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:57:25 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sort_arr(int *arr, int size)
 	}
 }
 
-long	get_the_median(t_list *a)
+long	get_the_median(t_list *a, int *min, int *max)
 {
 	int	*arr;
 	int	size;
@@ -68,6 +68,8 @@ long	get_the_median(t_list *a)
 	}
 	sort_arr(arr, size);
 	size = size - 1;
+	*min = arr[0];
+	*max = arr[size];
 	mid = arr[(size / 2)];
 	return (free(arr), mid);
 }
@@ -76,14 +78,18 @@ void	pre_sort(t_list **a, t_list **b)
 {
 	long	mid;
 	int		size;
+	int 	min;
+	int		max;
 	
-	mid = get_the_median(*a);
+	mid = get_the_median(*a, &max, &min);
 	if (mid == LONG_MAX)
 		return;
-	size = ft_lst_size(*a) - 1;
+	size = ft_lst_size(*a);
 	while (size)
 	{
-		if (mid >= (*a)->data)
+		if ((*a)->data == min || (*a)->data == max)
+			ra(a);
+		else if (mid >= (*a)->data)
 			pb(a, b);
 		else
 		{
@@ -110,26 +116,26 @@ int	get_the_quickest_way(int num, t_list *a)
 		a = a->next;
 	}
 	if (size / 2 > i)
+	{
 		return (1);
-	return (0);
+	}
+	else
+	{
+		return (0);
+	}
 }
 
 void	sort(t_list **a, t_list **b)
 {
 	while (*b)
 	{
-		if ((*b)->data < (*a)->data)
+		if ((*b)->data < (*a)->data && (*b)->data > lst_last(*a)->data)
 			pa(a, b);
-		else if ((*b)->data > lst_last(*a)->data)
-		{
-			pa(a, b);
-			ra(a);
-		}
 		else if(get_the_quickest_way((*b)->data, *a))
 		{
 			while (*a)
 			{
-				if ((*a)->data < (*b)->data)
+				if ((*b)->data < (*a)->data && (*b)->data > lst_last(*a)->data)
 				{
 					pa(a, b);
 					break ;
@@ -137,13 +143,12 @@ void	sort(t_list **a, t_list **b)
 				ra(a);
 			}
 		}
-		else
+		else if(get_the_quickest_way((*b)->data, *a) == 0)
 		{
 			while (*a)
 			{
-				if ((*a)->data < (*b)->data)
+				if ((*b)->data < (*a)->data && (*b)->data > lst_last(*a)->data)
 				{
-					ra(a);
 					pa(a, b);
 					break ;
 				}
