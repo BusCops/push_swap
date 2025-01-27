@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/27 14:44:31 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:08:27 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,151 @@ void	tree_numbers_sort(t_list **a)
 		sa(*a);
 }
 
+void	sort_arr(int *arr, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	j = 0;
+	i = 1;
+	while(i)
+	{
+		i = 0;
+		while(j < size - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+				i++;
+			}
+			j++;
+		}
+		j = 0;
+	}
+}
+
+int	*malloc_and_sort(t_list *a)
+{
+	int	*arr;
+	int	size;
+	int	i;
+	
+	i = 0;
+	size = ft_lst_size(a);
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		return (NULL);
+	while (i < size)
+	{
+		arr[i] = a->data;
+		i++;
+		a = a->next;
+	}
+	sort_arr(arr, size);
+	return(arr);
+}
+
+void	get_the_MMM(t_list *a, Min_Med_Max *values)
+{
+	int	*arr;
+	int	size;
+
+	size = ft_lst_size(a) - 1;
+	arr = malloc_and_sort(a);
+	if (!arr)
+	{
+		free_linked_list(&a);
+		exit(7);
+	}
+	values->min = arr[0];
+	if (size % 2 == 0)
+		values->med = arr[(size - 1) / 2];
+	else
+		values->med = arr[size / 2];
+	values->max1 = arr[size - 4];
+	values->max2 = arr[size - 3];
+	values->max3 = arr[size - 2];
+	values->max4 = arr[size - 1];
+	values->max5 = arr[size];
+	free(arr);
+}
+
+void	puch_rra(t_list **a, t_list **b, int med)
+{
+	while (*a)
+	{
+		if ((*a)->data == med)
+		{
+			pb(a, b);
+			break ;
+		}
+		rra(a);
+	}
+}
+void	puch_ra(t_list **a, t_list **b, int med)
+{
+	while (*a)
+	{
+		if ((*a)->data == med)
+		{
+			pb(a, b);
+			break ;
+		}
+		ra(a);
+	}
+}
+
+void	push_the_med(t_list **a, t_list **b, Min_Med_Max values)
+{
+	int	i;
+	int	size;
+	t_list *start;
+
+	i = 0;
+	size = ft_lst_size(*a);
+	start = *a;
+	while (*a)
+	{
+		if ((*a)->data == values.med)
+			break;
+		*a = (*a)->next;
+		i++;
+	}
+	*a = start;
+	if (size / 2 > i)
+		puch_ra(a, b, values.med);
+	else
+		puch_rra(a, b, values.med);
+}
+
+void	pre_sort(t_list **a, t_list **b, Min_Med_Max values)
+{
+	push_the_med(a, b, values);
+	while (ft_lst_size(*a) != 5)
+	{
+		if ((*a)->data == values.max1 || (*a)->data == values.max2 || (*a)->data == values.max3 || (*a)->data == values.max4 || (*a)->data == values.max5)
+			ra(a);
+		else
+		{
+			pb(a, b);
+			if ((*a)->data > values.med)
+				rb(b);
+		}
+	}
+}
+
+void	sort(t_list **a, t_list **b)
+{
+	Min_Med_Max	values;
+
+	get_the_MMM(*a, &values);
+	pre_sort(a, b, values);
+}
+
+/*
 void	sort_arr(int *arr, int size)
 {
 	int	i;
@@ -143,6 +288,21 @@ int	the_farest_from_size(int size, int i, int j, t_list **b)
 	return (0);
 }
 
+int	find_position_of_the_number(t_list *a,int num)
+{
+	int	i;
+
+	i = 0;
+	while(a->next)
+	{
+		if (num > a->data && num < a->next->data )
+			break;
+		i++;
+		a = a->next;
+	}
+	return (i);
+}
+
 int	get_the_quickest_way(int up, int down, t_list *a, t_list **b)
 {
 	int	size;
@@ -152,24 +312,8 @@ int	get_the_quickest_way(int up, int down, t_list *a, t_list **b)
 
 	start = a;
 	size = ft_lst_size(a);
-	i = 0;
-	j = 0;
-	while(a->next)
-	{
-		if (up > a->data && up < a->next->data )
-			break;
-		i++;
-		a = a->next;
-	}
-	a = start;
-	while (a->next)
-	{
-		if (down > a->data && down < a->next->data)
-			break ;
-		j++;
-		a = a->next;
-	}
-	//printf("num is holding %d size is holding %d and i is holding %d\n",num,size,  i);
+	i = find_position_of_the_number(a, up);
+	j = find_position_of_the_number(a, down);
 	size = size / 2;
 	if (size >= i && size >= j)
 	{
@@ -195,8 +339,6 @@ void	sort(t_list **a, t_list **b, int min)
 	{
 		if ((*b)->data < (*a)->data && (*b)->data > lst_last(*a)->data)
 			pa(a, b);
-		//else if ((*b)->data > (*a)->data && (*b)->data < lst_last(*a)->data)
-		//	pa(a, b);
 		else if(get_the_quickest_way((*b)->data, lst_last(*b)->data, *a, b))
 		{
 			while (*a)
@@ -253,7 +395,8 @@ void	sort(t_list **a, t_list **b, int min)
 		}
 	}
 }
-
+*/
+/////////////////////////////////////////////////////////////////////////
 
 /*
 void	insertion_sort2(t_list **a, t_list **b)
