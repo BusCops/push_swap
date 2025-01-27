@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/25 16:31:08 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:32:19 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ t_list	*lst_last(t_list *last);
 //void	sort_algo2(t_list **a, t_list **b);
 void	tree_numbers_sort(t_list **a);
 void	pre_sort(t_list **a, t_list **b);
-void	sort(t_list **a, t_list **b);
+void	sort(t_list **a, t_list **b, int min);
 
 #endif

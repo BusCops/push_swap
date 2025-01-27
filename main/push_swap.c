@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/25 17:39:13 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:49:44 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 		return (1);
 	lets_sort_it(&a,&b);
 	//test_func
-	
+	///*
 	t_list *new = a;
 	t_list *new2 = b;
 	printf("stack a\n");
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 		printf("%d\n",new2->data);
 		new2= new2->next;
 	}
-	
+	//*/
 	//end of test fun
 	
 	free_linked_list(&b);

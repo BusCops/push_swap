@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/25 18:57:25 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:44:31 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	pre_sort(t_list **a, t_list **b)
 	int 	min;
 	int		max;
 	
-	mid = get_the_median(*a, &max, &min);
+	mid = get_the_median(*a, &min, &max);
 	if (mid == LONG_MAX)
 		return;
 	size = ft_lst_size(*a);
@@ -98,40 +98,106 @@ void	pre_sort(t_list **a, t_list **b)
 		}
 		size--;
 	}
-	sort(a, b);
+	sort(a, b, min);
 }
 
-int	get_the_quickest_way(int num, t_list *a)
+int	the_farest_from_size(int size, int i, int j, t_list **b)
+{
+	if (size >= i && size <= j)
+	{
+		if (size - i <= j - size)
+		{
+			rrb(b);
+			if (size > j)
+				return (1);
+			else
+				return (0);
+		}
+		else if (size - i >= j - size)
+		{
+			if (size > i)
+				return (1);
+			else
+				return (0);
+		}
+	}
+	
+	if (size <= i && size >= j)
+	{
+		if (size - j >= i - size)
+		{
+			rrb(b);
+			if (size > j)
+				return (1);
+			else
+				return (0);
+		}
+		else if (size - j <= i - size)
+		{
+			if (size > i)
+				return (1);
+			else
+				return (0);
+		}
+	}
+	return (0);
+}
+
+int	get_the_quickest_way(int up, int down, t_list *a, t_list **b)
 {
 	int	size;
 	int	i;
+	int	j;
+	t_list	*start;
 
+	start = a;
 	size = ft_lst_size(a);
 	i = 0;
-	while(a)
+	j = 0;
+	while(a->next)
 	{
-		if (num > a->data)
+		if (up > a->data && up < a->next->data )
 			break;
 		i++;
 		a = a->next;
 	}
-	if (size / 2 > i)
+	a = start;
+	while (a->next)
 	{
+		if (down > a->data && down < a->next->data)
+			break ;
+		j++;
+		a = a->next;
+	}
+	//printf("num is holding %d size is holding %d and i is holding %d\n",num,size,  i);
+	size = size / 2;
+	if (size >= i && size >= j)
+	{
+		if (i > j)
+			rrb(b);
 		return (1);
 	}
-	else
+	else if (size <= i && size <= j)
 	{
+		if (i < j)
+			rrb(b);
 		return (0);
 	}
+	return (the_farest_from_size(size, i, j, b));
 }
 
-void	sort(t_list **a, t_list **b)
+void	sort(t_list **a, t_list **b, int min)
 {
+	int	size;
+	int	i;
+	t_list	*start;
 	while (*b)
 	{
 		if ((*b)->data < (*a)->data && (*b)->data > lst_last(*a)->data)
 			pa(a, b);
-		else if(get_the_quickest_way((*b)->data, *a))
+		//else if ((*b)->data > (*a)->data && (*b)->data < lst_last(*a)->data)
+		//	pa(a, b);
+		else if(get_the_quickest_way((*b)->data, lst_last(*b)->data, *a, b))
 		{
 			while (*a)
 			{
@@ -143,7 +209,7 @@ void	sort(t_list **a, t_list **b)
 				ra(a);
 			}
 		}
-		else if(get_the_quickest_way((*b)->data, *a) == 0)
+		else if(get_the_quickest_way((*b)->data, lst_last(*b)->data, *a, b) == 0)
 		{
 			while (*a)
 			{
@@ -154,6 +220,36 @@ void	sort(t_list **a, t_list **b)
 				}
 				rra(a);
 			}
+		}
+	}
+	i = 0;
+	start = *a;
+	size = ft_lst_size(*a);
+	while (*a)
+	{
+		if ((*a)->data == min)
+			break;
+		i++;
+		*a = (*a)->next;
+	}
+	*a = start;
+	size = size / 2;
+	if (size > i)
+	{
+		while (*a)
+		{
+			if ((*a)->data == min)
+				break;
+			ra(a);
+		}
+	}
+	else
+	{
+		while (*a)
+		{
+			if ((*a)->data == min)
+				break;
+			rra(a);
 		}
 	}
 }
