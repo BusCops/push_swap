@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:43:41 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 16:25:30 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:05:37 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	rb(t_list **b)
 
 void	rr(t_list **a, t_list **b)
 {
-	ra(a);
-	rb(b);
+	ra_no_write(a);
+	rb_no_write(b);
 	write(1, "rr\n", 3);
 }
 

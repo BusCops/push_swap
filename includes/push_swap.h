@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 18:02:48 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:06:51 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,9 @@ void	puch_rra(t_list **a, t_list **b, int med);
 void	puch_ra(t_list **a, t_list **b, int med);
 void	four_numbers_sort(t_list **a, t_list **b);
 void	five_numbers_sort(t_list **a, t_list **b);
+void	ra_no_write(t_list **a);
+void	rb_no_write(t_list **b);
+void	rra_no_write(t_list **a);
+void	rrb_no_write(t_list **b);
 
 #endif
