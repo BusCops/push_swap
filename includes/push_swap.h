@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/27 19:02:23 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:44:27 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ typedef struct Min_Med_MAX
 	int	max4;
 	int	max5;
 }	Min_Med_Max;
+
+typedef	struct Number_mv
+{
+	int	num;
+	int	pa_mv;
+	int	ra_mv;
+	int	rb_mv;
+	int rra_mv;
+	int	rrb_mv;
+	int rr_mv;
+	int	rrr_mv;
+	int	total_mv;
+}	Number_mov;
 
 typedef struct s_list
 {
@@ -74,8 +87,13 @@ t_list	*lst_last(t_list *last);
 //void	quick_sort(t_list **a, t_list **b);
 //void	sort_algo2(t_list **a, t_list **b);
 //void	pre_sort(t_list **a, t_list **b);
+//void	my_sort(t_list **a, t_list **b);
 
-void	tree_numbers_sort(t_list **a);
+void	three_numbers_sort(t_list **a);
 void	sort(t_list **a, t_list **b);
+void	puch_rra(t_list **a, t_list **b, int med);
+void	puch_ra(t_list **a, t_list **b, int med);
+void	four_numbers_sort(t_list **a, t_list **b);
+void	five_numbers_sort(t_list **a, t_list **b);
 
 #endif

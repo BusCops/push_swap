@@ -6,13 +6,13 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/27 19:08:27 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:17:16 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	tree_numbers_sort(t_list **a)
+void	three_numbers_sort(t_list **a)
 {
 	if ((*a)->data < (*a)->next->data)
 		sa(*a);
@@ -20,6 +20,64 @@ void	tree_numbers_sort(t_list **a)
 		ra(a);
 	if ((*a)->data > (*a)->next->data)
 		sa(*a);
+}
+
+int	find_min(t_list *a)
+{
+	int min;
+	
+	min = a->data;
+	while (a)
+	{
+		if (min > a->data)
+			min = a->data;
+		a = a->next;
+	}
+	return (min);
+}
+
+void	push_the_min(t_list **a, t_list **b, int min)
+{
+	int	i;
+	int	size;
+	t_list *start;
+
+	i = 0;
+	size = ft_lst_size(*a);
+	start = *a;
+	while (*a)
+	{
+		if ((*a)->data == min)
+			break;
+		*a = (*a)->next;
+		i++;
+	}
+	*a = start;
+	if (size / 2 >= i)
+		puch_ra(a, b, min);
+	else
+		puch_rra(a, b, min);
+}
+
+void	four_numbers_sort(t_list **a, t_list **b)
+{
+	int	min;
+	
+	min = find_min(*a);
+	push_the_min(a, b, min);
+	three_numbers_sort(a);
+	pa(a, b);
+}
+
+void	five_numbers_sort(t_list **a, t_list **b)
+{
+	int min;
+
+	min = find_min(*a);
+	push_the_min(a, b, min);
+	four_numbers_sort(a, b);
+	pa(a, b);
+	
 }
 
 void	sort_arr(int *arr, int size)
@@ -151,9 +209,81 @@ void	pre_sort(t_list **a, t_list **b, Min_Med_Max values)
 			ra(a);
 		else
 		{
-			pb(a, b);
 			if ((*a)->data > values.med)
+			{
+				pb(a, b);
 				rb(b);
+			}
+			else
+				pb(a, b);
+		}
+	}
+}
+
+void	Number_movement_reset(Number_mv *num)
+{
+	num->pa_mv = 0;
+	num->ra_mv = 0;
+	num->rb_mv = 0;
+	num->rra_mv = 0;
+	num->rrb_mv = 0;
+	num->rr_mv = 0;
+	num->rrr_mv = 0;
+	num->total_mv = 0;
+}
+
+void	best_move_to_a(t_list *a, Number_mv *num)
+{
+	int	i;
+	int	size;
+	
+	size = ft_lst_size;
+	if (num->num < a->data && num->num < lst_last(a)->data)
+		num->pa++;
+	else
+	{
+		while (a->next)
+		{
+			if (num < a->data && num > a->next->data)
+				break;
+			a = a->next;
+			i++;
+		}
+	if (size / 2 >= i)
+		num->ra = i;
+	else
+		num->rra = i;
+	}
+}
+
+void	calcul_total_move()
+{
+	
+}
+
+void	check_move()
+{
+	
+}
+
+void	sorting(t_list **a, t_list **b)
+{
+	Number_mv	num;
+	Number_mv	tmp;
+	int			i;
+	t_list		start;
+	
+	start = *a;
+	i = 0;
+	while (*b)
+	{
+		while (*b)
+		{
+			num->num = b->data;
+			best_move_to_a(*a, num);
+			check_move();
+			i++;
+			*b = (*b)->next;		
 		}
 	}
 }
@@ -164,6 +294,8 @@ void	sort(t_list **a, t_list **b)
 
 	get_the_MMM(*a, &values);
 	pre_sort(a, b, values);
+	five_numbers_sort(a, b);
+	sorting(a, b);
 }
 
 /*
@@ -330,7 +462,7 @@ int	get_the_quickest_way(int up, int down, t_list *a, t_list **b)
 	return (the_farest_from_size(size, i, j, b));
 }
 
-void	sort(t_list **a, t_list **b, int min)
+void	my_sort(t_list **a, t_list **b, int min)
 {
 	int	size;
 	int	i;
