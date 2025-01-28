@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 15:44:27 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:02:48 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef	struct Number_mv
 	int rr_mv;
 	int	rrr_mv;
 	int	total_mv;
-}	Number_mov;
+}	Number_mv;
 
 typedef struct s_list
 {
@@ -87,7 +87,7 @@ t_list	*lst_last(t_list *last);
 //void	quick_sort(t_list **a, t_list **b);
 //void	sort_algo2(t_list **a, t_list **b);
 //void	pre_sort(t_list **a, t_list **b);
-//void	my_sort(t_list **a, t_list **b);
+//void	pre_sort(t_list **a, t_list **b);
 
 void	three_numbers_sort(t_list **a);
 void	sort(t_list **a, t_list **b);

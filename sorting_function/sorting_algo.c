@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 16:17:16 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 18:57:23 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,54 +237,177 @@ void	best_move_to_a(t_list *a, Number_mv *num)
 	int	i;
 	int	size;
 	
-	size = ft_lst_size;
+	i = 0;
+	size = ft_lst_size(a);
 	if (num->num < a->data && num->num < lst_last(a)->data)
-		num->pa++;
+		num->pa_mv++;
+	else if (num->num < a->data && num->num > lst_last(a)->data)
+		num->pa_mv++;
 	else
 	{
 		while (a->next)
 		{
-			if (num < a->data && num > a->next->data)
+			if (num->num > a->data && num->num < a->next->data)
 				break;
 			a = a->next;
 			i++;
 		}
 	if (size / 2 >= i)
-		num->ra = i;
+		num->ra_mv = i;
 	else
-		num->rra = i;
+		num->rra_mv = size - i;
+	num->pa_mv++;
 	}
 }
 
-void	calcul_total_move()
+void	best_move_from_b(t_list *b, Number_mv *num)
 {
+	int	i;
+	int	size;
 	
+	i = 0;
+	size = ft_lst_size(b);
+	while (b)
+	{
+		if (num->num == b->data)
+			break;
+		b = b->next;
+		i++;
+	}
+	if (size / 2 >= i)
+		num->rb_mv = i;
+	else
+		num->rrb_mv = size - i;
 }
 
-void	check_move()
+void	calcul_total_move(Number_mv *num)
 {
-	
+	if (num->ra_mv - num->rb_mv == 0)
+	{
+		num->rr_mv = num->rb_mv + num->ra_mv;
+		num->ra_mv = 0;
+		num->rb_mv = 0;
+	}
+	else if (num->ra_mv - num->rb_mv > 0)
+	{
+		num->rr_mv = num->rb_mv;
+		num->ra_mv = num->ra_mv - num->rb_mv;
+		num->rb_mv = 0;
+	}
+	else if (num->ra_mv - num->rb_mv < 0)
+	{
+		num->rr_mv = num->ra_mv;
+		num->rb_mv = num->rb_mv - num->ra_mv;
+		num->ra_mv = 0;
+	}
+	if (num->rra_mv - num->rrb_mv == 0)
+	{
+		num->rrr_mv = num->rrb_mv + num->rra_mv;
+		num->rra_mv = 0;
+		num->rrb_mv = 0;
+	}
+	else if (num->rra_mv - num->rrb_mv > 0)
+	{
+		num->rrr_mv = num->rrb_mv;
+		num->rra_mv = num->rra_mv - num->rrb_mv;
+		num->rrb_mv = 0;
+	}
+	else if (num->rra_mv - num->rrb_mv < 0)
+	{
+		num->rrr_mv = num->rra_mv;
+		num->rrb_mv = num->rrb_mv - num->rra_mv;
+		num->rra_mv = 0;
+	}
+	num->total_mv = num->rr_mv + num->rb_mv + num->ra_mv + num->rrr_mv + num->rrb_mv + num->rra_mv + num->pa_mv;
+}
+
+void	check_move(Number_mv *num, Number_mv *tmp)
+{
+	calcul_total_move(num);
+	calcul_total_move(tmp);
+	if (num->total_mv > tmp->total_mv)
+	{
+		num->num = tmp->num;
+		num->pa_mv = tmp->pa_mv;
+		num->ra_mv = tmp->ra_mv;
+		num->rb_mv = tmp->rb_mv;
+		num->rra_mv = tmp->rra_mv;
+		num->rrb_mv = tmp->rrb_mv;
+		num->rr_mv = tmp->rr_mv;
+		num->rrr_mv = tmp->rrr_mv;
+		num->total_mv = tmp->total_mv;
+	}
+}
+
+void	apply_best_move(t_list **a, t_list **b, Number_mv *num)
+{
+	while (num->ra_mv)
+	{
+		ra(a);
+		num->ra_mv--;
+	}
+	while (num->rb_mv)
+	{
+		rb(b);
+		num->rb_mv--;
+	}
+	while (num->rra_mv)
+	{
+		rra(a);
+		num->rra_mv--;
+	}
+	while (num->rrb_mv)
+	{
+		rrb(b);
+		num->rrb_mv--;
+	}
+	while (num->rr_mv)
+	{
+		rr(a, b);
+		num->rr_mv--;
+	}
+	while (num->rrr_mv)
+	{
+		rrr(a, b);
+		num->rrr_mv--;
+	}
+	while (num->pa_mv)
+	{
+		pa(a, b);
+		num->pa_mv--;
+	}
 }
 
 void	sorting(t_list **a, t_list **b)
 {
 	Number_mv	num;
 	Number_mv	tmp;
-	int			i;
-	t_list		start;
+	t_list		*start;
 	
-	start = *a;
-	i = 0;
+	start = *b;
+	tmp.num = (*b)->data;
+	num.num = (*b)-> data;
+	Number_movement_reset(&num);
+	Number_movement_reset(&tmp);
+	best_move_from_b(*b, &num);
+	best_move_to_a(*a, &num);
 	while (*b)
 	{
+		num.num = (*b)->data;
+		best_move_from_b(*b, &num);
+		best_move_to_a(*a, &num);
 		while (*b)
 		{
-			num->num = b->data;
-			best_move_to_a(*a, num);
-			check_move();
-			i++;
-			*b = (*b)->next;		
+			tmp.num = (*b)->data;
+			best_move_from_b(*b, &tmp);
+			best_move_to_a(*a, &tmp);
+			check_move(&num, &tmp);
+			Number_movement_reset(&tmp);
+			*b = (*b)->next;
 		}
+		*b = start;
+		apply_best_move(a, b, &num);
+		start = *b;
 	}
 }
 
@@ -298,7 +421,15 @@ void	sort(t_list **a, t_list **b)
 	sorting(a, b);
 }
 
+
+////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////
+
 /*
+
 void	sort_arr(int *arr, int size)
 {
 	int	i;
@@ -375,7 +506,7 @@ void	pre_sort(t_list **a, t_list **b)
 		}
 		size--;
 	}
-	sort(a, b, min);
+	my_sort(a, b, min);
 }
 
 int	the_farest_from_size(int size, int i, int j, t_list **b)

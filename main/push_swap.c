@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 15:14:37 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:56:21 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	detect_range(t_list **a, t_list **b)
 		five_numbers_sort(a, b);
 	else if (i > 5)
 		sort(a, b);
+	//pre_sort(a, b);
 	//quick_sort(a, b);
 		//pre_sort(a, b);
 	//sort_with_chunks(a, b);
@@ -53,7 +54,7 @@ int	main(int ac, char **av)
 		return (1);
 	lets_sort_it(&a,&b);
 	//test_func
-	/*
+	
 	t_list *new = a;
 	t_list *new2 = b;
 	printf("stack a\n");
@@ -68,7 +69,7 @@ int	main(int ac, char **av)
 		printf("%d\n",new2->data);
 		new2= new2->next;
 	}
-	*/
+	
 	//end of test fun
 	
 	free_linked_list(&b);
