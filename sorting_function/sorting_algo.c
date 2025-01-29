@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:48:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 18:57:23 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:47:01 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	push_the_min(t_list **a, t_list **b, int min)
 	}
 	*a = start;
 	if (size / 2 >= i)
-		puch_ra(a, b, min);
+		push_ra(a, b, min);
 	else
-		puch_rra(a, b, min);
+		push_rra(a, b, min);
 }
 
 void	four_numbers_sort(t_list **a, t_list **b)
@@ -152,7 +152,7 @@ void	get_the_MMM(t_list *a, Min_Med_Max *values)
 	free(arr);
 }
 
-void	puch_rra(t_list **a, t_list **b, int med)
+void	push_rra(t_list **a, t_list **b, int med)
 {
 	while (*a)
 	{
@@ -164,7 +164,7 @@ void	puch_rra(t_list **a, t_list **b, int med)
 		rra(a);
 	}
 }
-void	puch_ra(t_list **a, t_list **b, int med)
+void	push_ra(t_list **a, t_list **b, int med)
 {
 	while (*a)
 	{
@@ -195,9 +195,9 @@ void	push_the_med(t_list **a, t_list **b, Min_Med_Max values)
 	}
 	*a = start;
 	if (size / 2 > i)
-		puch_ra(a, b, values.med);
+		push_ra(a, b, values.med);
 	else
-		puch_rra(a, b, values.med);
+		push_rra(a, b, values.med);
 }
 
 void	pre_sort(t_list **a, t_list **b, Min_Med_Max values)
@@ -232,14 +232,15 @@ void	Number_movement_reset(Number_mv *num)
 	num->total_mv = 0;
 }
 
-void	best_move_to_a(t_list *a, Number_mv *num)
+void	best_move_to_a(t_list *a, Number_mv *num, int max)
 {
 	int	i;
 	int	size;
-	
+	//printf("num is %d aaaaaaaaaaaaaaaaaaaaaaaaaaaa           %d\n",num->num, a->data);
 	i = 0;
 	size = ft_lst_size(a);
-	if (num->num < a->data && num->num < lst_last(a)->data)
+	
+	if (num->num < a->data && num->num < lst_last(a)->data && a->data < lst_last(a)->data)
 		num->pa_mv++;
 	else if (num->num < a->data && num->num > lst_last(a)->data)
 		num->pa_mv++;
@@ -247,11 +248,15 @@ void	best_move_to_a(t_list *a, Number_mv *num)
 	{
 		while (a->next)
 		{
-			if (num->num > a->data && num->num < a->next->data)
+			if ((num->num > a->data && num->num < a->next->data) || (a->data == max && num->num < a->next->data ))
+			{
+				i++;
 				break;
+			}
 			a = a->next;
 			i++;
 		}
+	//printf("num is %d aaaaaaaaaaaaaaaaaaaaaaaaaaaa           %d\n",num->num, i);
 	if (size / 2 >= i)
 		num->ra_mv = i;
 	else
@@ -269,11 +274,13 @@ void	best_move_from_b(t_list *b, Number_mv *num)
 	size = ft_lst_size(b);
 	while (b)
 	{
+		//printf("b is holding %d and num is %d\n",b->data, num->num  );
 		if (num->num == b->data)
 			break;
 		b = b->next;
 		i++;
 	}
+	//printf("dfsfdfsfsdf     %d\n",i);
 	if (size / 2 >= i)
 		num->rb_mv = i;
 	else
@@ -282,51 +289,63 @@ void	best_move_from_b(t_list *b, Number_mv *num)
 
 void	calcul_total_move(Number_mv *num)
 {
-	if (num->ra_mv - num->rb_mv == 0)
+	if (num->ra_mv == 0 || num->rb_mv == 0)
 	{
-		num->rr_mv = num->rb_mv + num->ra_mv;
+		num->rr_mv = num->rr_mv;
+	}
+	else if (num->ra_mv - num->rb_mv == 0)
+	{
+		num->rr_mv = num->ra_mv + num->rr_mv;
 		num->ra_mv = 0;
 		num->rb_mv = 0;
 	}
 	else if (num->ra_mv - num->rb_mv > 0)
 	{
-		num->rr_mv = num->rb_mv;
+		num->rr_mv = num->rb_mv + num->rr_mv;
 		num->ra_mv = num->ra_mv - num->rb_mv;
 		num->rb_mv = 0;
 	}
 	else if (num->ra_mv - num->rb_mv < 0)
 	{
-		num->rr_mv = num->ra_mv;
+		num->rr_mv = num->ra_mv + num->rr_mv;
 		num->rb_mv = num->rb_mv - num->ra_mv;
 		num->ra_mv = 0;
 	}
-	if (num->rra_mv - num->rrb_mv == 0)
+	if (num->rra_mv == 0 || num->rrb_mv == 0)
 	{
-		num->rrr_mv = num->rrb_mv + num->rra_mv;
+		num->rrr_mv = num->rrr_mv;
+	}
+	else if (num->rra_mv - num->rrb_mv == 0)
+	{
+		num->rrr_mv = num->rra_mv + num->rrr_mv;
 		num->rra_mv = 0;
 		num->rrb_mv = 0;
 	}
 	else if (num->rra_mv - num->rrb_mv > 0)
 	{
-		num->rrr_mv = num->rrb_mv;
+		num->rrr_mv = num->rrb_mv + num->rrr_mv;
 		num->rra_mv = num->rra_mv - num->rrb_mv;
 		num->rrb_mv = 0;
 	}
 	else if (num->rra_mv - num->rrb_mv < 0)
 	{
-		num->rrr_mv = num->rra_mv;
+		num->rrr_mv = num->rra_mv + num->rrr_mv;
 		num->rrb_mv = num->rrb_mv - num->rra_mv;
 		num->rra_mv = 0;
 	}
+	//printf("RR MOVES %d\n", num->rr_mv);
 	num->total_mv = num->rr_mv + num->rb_mv + num->ra_mv + num->rrr_mv + num->rrb_mv + num->rra_mv + num->pa_mv;
 }
 
 void	check_move(Number_mv *num, Number_mv *tmp)
 {
+	//printf("num");
 	calcul_total_move(num);
+	//printf("tmp");
 	calcul_total_move(tmp);
 	if (num->total_mv > tmp->total_mv)
 	{
+	//	printf("exchange :)\n");
 		num->num = tmp->num;
 		num->pa_mv = tmp->pa_mv;
 		num->ra_mv = tmp->ra_mv;
@@ -336,6 +355,7 @@ void	check_move(Number_mv *num, Number_mv *tmp)
 		num->rr_mv = tmp->rr_mv;
 		num->rrr_mv = tmp->rrr_mv;
 		num->total_mv = tmp->total_mv;
+	//	printf("RR MOVES %d\n", num->rr_mv);
 	}
 }
 
@@ -378,36 +398,44 @@ void	apply_best_move(t_list **a, t_list **b, Number_mv *num)
 	}
 }
 
-void	sorting(t_list **a, t_list **b)
+void	sorting(t_list **a, t_list **b, int max)
 {
 	Number_mv	num;
 	Number_mv	tmp;
 	t_list		*start;
+	(void)a;
 	
 	start = *b;
 	tmp.num = (*b)->data;
 	num.num = (*b)-> data;
+	//printf("number is %d      %d\n",num.num,tmp.num);
 	Number_movement_reset(&num);
 	Number_movement_reset(&tmp);
 	best_move_from_b(*b, &num);
-	best_move_to_a(*a, &num);
+	best_move_to_a(*a, &num, max);
+	//printf("ra %d rra %d rb %d rrb %d pa %d\n",num.ra_mv, num.rra_mv, num.rb_mv, num.rrb_mv, num.pa_mv);
 	while (*b)
 	{
 		num.num = (*b)->data;
 		best_move_from_b(*b, &num);
-		best_move_to_a(*a, &num);
+		best_move_to_a(*a, &num, max);
+		//printf(" NUM ra %d rra %d rb %d rrb %d rr %d rrr %d pa %d\n",num.ra_mv, num.rra_mv, num.rb_mv, num.rrb_mv,num.rr_mv, num.rrr_mv ,num.pa_mv);
 		while (*b)
 		{
 			tmp.num = (*b)->data;
-			best_move_from_b(*b, &tmp);
-			best_move_to_a(*a, &tmp);
+			best_move_from_b(start, &tmp);
+			best_move_to_a(*a, &tmp, max);
+			//printf("ra %d rra %d rb %d rrb %d rr %d rrr %d pa %d\n",num.ra_mv, num.rra_mv, num.rb_mv, num.rrb_mv,num.rr_mv, num.rrr_mv ,num.pa_mv);
+			//printf("tmp     ra %d rra %d rb %d rrb %d  rr %d rrr %d pa %d\n",tmp.ra_mv, tmp.rra_mv, tmp.rb_mv, tmp.rrb_mv,tmp.rr_mv ,tmp.rrr_mv ,tmp.pa_mv);
 			check_move(&num, &tmp);
 			Number_movement_reset(&tmp);
 			*b = (*b)->next;
 		}
 		*b = start;
 		apply_best_move(a, b, &num);
-		start = *b;
+		Number_movement_reset(&num);
+		start  = *b;
+		
 	}
 }
 
@@ -418,15 +446,42 @@ void	sort(t_list **a, t_list **b)
 	get_the_MMM(*a, &values);
 	pre_sort(a, b, values);
 	five_numbers_sort(a, b);
-	sorting(a, b);
+	sorting(a, b, values.max5);
+	int	i = 0;
+	t_list *start = *a;
+	int size = ft_lst_size(*a);
+	while (*a)
+	{
+		if ((*a)->data == values.min)
+			break;
+		i++;
+		*a = (*a)->next;
+	}
+	*a = start;
+	size = size / 2;
+	if (size > i)
+	{
+		while (*a)
+		{
+			if ((*a)->data == values.min)
+				break;
+			ra(a);
+		}
+	}
+	else
+	{
+		while (*a)
+		{
+			if ((*a)->data == values.min)
+				break;
+			rra(a);
+		}
+	}
 }
 
 
 ////////////////////////////////////////////
 
-
-
-//////////////////////////////////////////////
 
 /*
 

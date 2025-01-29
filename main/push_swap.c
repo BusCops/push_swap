@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:40:57 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/28 17:56:21 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:47:13 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ void	detect_range(t_list **a, t_list **b)
 		five_numbers_sort(a, b);
 	else if (i > 5)
 		sort(a, b);
-	//pre_sort(a, b);
-	//quick_sort(a, b);
-		//pre_sort(a, b);
-	//sort_with_chunks(a, b);
 }
 
 int	main(int ac, char **av)
