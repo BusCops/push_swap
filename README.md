@@ -55,15 +55,15 @@ Example:
 ./push_swap 4 3 2 1
 ```
 
-To verify that the operations correctly sort the list, you can use the `checker` executable:
+To verify that the operations correctly sort the list, you can use the `checker_linux` executable:
 ```
-ARG="4 3 2 1"; ./push_swap $ARG | ./checker $ARG
+ARG="4 3 2 1"; ./push_swap $ARG | ./checker_linux $ARG
 ```
 
 If the list is sorted, `checker` will output `OK`. Otherwise, it will output `KO`.
 
 ## Examples
-Here are a few examples of how to use the `push_swap` and `checker` programs:
+Here are a few examples of how to use the `push_swap` and `checker_linux` programs:
 
 Example 1:
 ```
@@ -74,6 +74,8 @@ Example 2:
 ```
 ARG=$(shuf -i 1-100 -n 10); ./push_swap $ARG | ./checker $ARG
 ```
+## Credits
+Developed by **abenzaho** as part of the 42 curriculum.
 
 ## Contributing
 Contributions are welcome! If you have any suggestions or improvements, please submit a pull request or open an issue.
