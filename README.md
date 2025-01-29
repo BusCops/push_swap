@@ -1,6 +1,3 @@
-Sure! Here's a sample README for your `push_swap` project. This README will include sections that describe the project, how to compile and run it, and some examples.
-
----
 
 # Push Swap
 
