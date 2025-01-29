@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/29 13:24:13 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:25:41 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct Min_Med_MAX
+typedef struct min_med_max
 {
 	int	min;
 	int	med;
@@ -27,7 +27,7 @@ typedef struct Min_Med_MAX
 	int	max3;
 	int	max4;
 	int	max5;
-}	Min_Med_Max;
+}	min_med_max;
 
 typedef	struct Number_mv
 {
@@ -80,15 +80,6 @@ int		check_if_sorted(t_list *a);
 void	lets_sort_it(t_list **a, t_list **b);
 void	detect_range(t_list **a, t_list **b);
 t_list	*lst_last(t_list *last);
-//void	algo_num_1(t_list *a);
-//int		pivot(t_list *a);
-//int		mid_number(int first, int mid, int last);
-//void	insertion_sort2(t_list **a, t_list **b);
-//void	quick_sort(t_list **a, t_list **b);
-//void	sort_algo2(t_list **a, t_list **b);
-//void	pre_sort(t_list **a, t_list **b);
-//void	pre_sort(t_list **a, t_list **b);
-
 void	three_numbers_sort(t_list **a);
 void	sort(t_list **a, t_list **b);
 void	push_rra(t_list **a, t_list **b, int med);
@@ -99,5 +90,11 @@ void	ra_no_write(t_list **a);
 void	rb_no_write(t_list **b);
 void	rra_no_write(t_list **a);
 void	rrb_no_write(t_list **b);
+void	get_the_mmm(t_list *a, min_med_max *values);
+void	push_the_min(t_list **a, t_list **b, int min);
+void	number_movement_reset(Number_mv *num);
+void	best_move_to_a(t_list *a, Number_mv *num, int max);
+void	best_move_from_b(t_list *b, Number_mv *num);
+void	pre_sort(t_list **a, t_list **b, min_med_max values);
 
 #endif
