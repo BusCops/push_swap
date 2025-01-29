@@ -6,13 +6,13 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:11:46 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/29 17:25:05 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:13:55 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	push_the_med(t_list **a, t_list **b, min_med_max values)
+void	push_the_med(t_list **a, t_list **b, t_min_med_max values)
 {
 	int		i;
 	int		size;
@@ -35,7 +35,7 @@ void	push_the_med(t_list **a, t_list **b, min_med_max values)
 		push_rra(a, b, values.med);
 }
 
-void	pre_sort(t_list **a, t_list **b, min_med_max values)
+void	pre_sort(t_list **a, t_list **b, t_min_med_max values)
 {
 	push_the_med(a, b, values);
 	while (ft_lst_size(*a) != 5)
@@ -57,19 +57,7 @@ void	pre_sort(t_list **a, t_list **b, min_med_max values)
 	}
 }
 
-void	number_movement_reset(Number_mv *num)
-{
-	num->pa_mv = 0;
-	num->ra_mv = 0;
-	num->rb_mv = 0;
-	num->rra_mv = 0;
-	num->rrb_mv = 0;
-	num->rr_mv = 0;
-	num->rrr_mv = 0;
-	num->total_mv = 0;
-}
-
-void	search_for_position(t_list *a, int max, Number_mv *num)
+void	search_for_position(t_list *a, int max, t_Number_mv *num)
 {
 	int	i;
 	int	size;
@@ -94,7 +82,7 @@ void	search_for_position(t_list *a, int max, Number_mv *num)
 	num->pa_mv++;
 }
 
-void	best_move_to_a(t_list *a, Number_mv *num, int max)
+void	best_move_to_a(t_list *a, t_Number_mv *num, int max)
 {
 	if (num->num < a->data && num->num < lst_last(a)->data
 		&& a->data < lst_last(a)->data)
@@ -105,7 +93,7 @@ void	best_move_to_a(t_list *a, Number_mv *num, int max)
 		search_for_position(a, max, num);
 }
 
-void	best_move_from_b(t_list *b, Number_mv *num)
+void	best_move_from_b(t_list *b, t_Number_mv *num)
 {
 	int	i;
 	int	size;

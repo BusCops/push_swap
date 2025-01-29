@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:57:23 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/29 17:08:14 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:13:19 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	*malloc_and_sort(t_list *a)
 	return (arr);
 }
 
-void	get_the_mmm(t_list *a, min_med_max *values)
+void	get_the_mmm(t_list *a, t_min_med_max *values)
 {
 	int	*arr;
 	int	size;

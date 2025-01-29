@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/29 17:25:41 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:10:20 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct min_med_max
+typedef struct t_min_med_max
 {
 	int	min;
 	int	med;
@@ -27,20 +27,20 @@ typedef struct min_med_max
 	int	max3;
 	int	max4;
 	int	max5;
-}	min_med_max;
+}	t_min_med_max;
 
-typedef	struct Number_mv
+typedef struct t_Number_mv
 {
 	int	num;
 	int	pa_mv;
 	int	ra_mv;
 	int	rb_mv;
-	int rra_mv;
+	int	rra_mv;
 	int	rrb_mv;
-	int rr_mv;
+	int	rr_mv;
 	int	rrr_mv;
 	int	total_mv;
-}	Number_mv;
+}	t_Number_mv;
 
 typedef struct s_list
 {
@@ -90,11 +90,11 @@ void	ra_no_write(t_list **a);
 void	rb_no_write(t_list **b);
 void	rra_no_write(t_list **a);
 void	rrb_no_write(t_list **b);
-void	get_the_mmm(t_list *a, min_med_max *values);
-void	push_the_min(t_list **a, t_list **b, int min);
-void	number_movement_reset(Number_mv *num);
-void	best_move_to_a(t_list *a, Number_mv *num, int max);
-void	best_move_from_b(t_list *b, Number_mv *num);
-void	pre_sort(t_list **a, t_list **b, min_med_max values);
+void	get_the_mmm(t_list *a, t_min_med_max *values);
+void	number_movement_reset(t_Number_mv *num);
+void	best_move_to_a(t_list *a, t_Number_mv *num, int max);
+void	best_move_from_b(t_list *b, t_Number_mv *num);
+void	pre_sort(t_list **a, t_list **b, t_min_med_max values);
+void	check_move(t_Number_mv *num, t_Number_mv *tmp);
 
 #endif
