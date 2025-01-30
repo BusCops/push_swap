@@ -1,53 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_operation1.c                               :+:      :+:    :+:   */
+/*   op_fun1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:43:22 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 15:08:53 by abenzaho         ###   ########.fr       */
+/*   Created: 2025/01/30 16:11:58 by abenzaho          #+#    #+#             */
+/*   Updated: 2025/01/30 16:17:56 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include "../includes/checker.h"
 
-void	sa(t_list *a)
-{
-	int		tmp1;
-	t_list	*tmp2;
-
-	if (!a || !a->next)
-		return ;
-	tmp1 = a->data;
-	tmp2 = a->next;
-	a->data = tmp2->data;
-	tmp2->data = tmp1;
-	write(1, "sa\n", 3);
-}
-
-void	sb(t_list *b)
-{
-	int		tmp1;
-	t_list	*tmp2;
-
-	if (!b || !b->next)
-		return ;
-	tmp1 = b->data;
-	tmp2 = b->next;
-	b->data = tmp2->data;
-	tmp2->data = tmp1;
-	write(1, "ba\n", 3);
-}
-
-void	ss(t_list *a, t_list *b)
+void	ss_no_write(t_list *a, t_list *b)
 {
 	sa_no_write(a);
 	sb_no_write(b);
-	write(1, "ss\n", 3);
 }
 
-void	pa(t_list **a, t_list **b)
+void	pa_no_write(t_list **a, t_list **b)
 {
 	t_list	*tmp1;
 
@@ -57,10 +29,9 @@ void	pa(t_list **a, t_list **b)
 	*b = (*b)->next;
 	tmp1->next = *a;
 	*a = tmp1;
-	write(1, "pa\n", 3);
 }
 
-void	pb(t_list **a, t_list **b)
+void	pb_no_write(t_list **a, t_list **b)
 {
 	t_list	*tmp1;
 
@@ -70,5 +41,17 @@ void	pb(t_list **a, t_list **b)
 	*a = (*a)->next;
 	tmp1->next = *b;
 	*b = tmp1;
-	write(1, "pb\n", 3);
+}
+
+void	rrr_no_write(t_list **a, t_list **b)
+{
+	rra_no_write(a);
+	rrb_no_write(b);
+}
+
+void	rr_no_write(t_list **a, t_list **b)
+{
+	ra_no_write(a);
+	rb_no_write(b);
+
 }

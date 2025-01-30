@@ -1,50 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_function4.c                                 :+:      :+:    :+:   */
+/*   sorting_operation4.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 12:03:49 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 15:16:34 by abenzaho         ###   ########.fr       */
+/*   Created: 2025/01/30 15:07:14 by abenzaho          #+#    #+#             */
+/*   Updated: 2025/01/30 16:11:29 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_list	*lst_last(t_list *lst)
+void	sa_no_write(t_list *a)
 {
-	t_list	*last;
-
-	last = lst;
-	while (last && last->next)
-	{
-		last = last->next;
-	}
-	return (last);
-}
-
-void	free_linked_list(t_list **lst)
-{
-	t_list	*tmp;
+	int		tmp1;
 	t_list	*tmp2;
 
-	tmp = *lst;
-	while (tmp)
-	{
-		tmp2 = tmp->next;
-		free(tmp);
-		tmp = tmp2;
-	}
-	*lst = NULL;
+	if (!a || !a->next)
+		return ;
+	tmp1 = a->data;
+	tmp2 = a->next;
+	a->data = tmp2->data;
+	tmp2->data = tmp1;
 }
 
-void	free_array(char **str)
+void	sb_no_write(t_list *b)
 {
-	int	i;
+	int		tmp1;
+	t_list	*tmp2;
 
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
+	if (!b || !b->next)
+		return ;
+	tmp1 = b->data;
+	tmp2 = b->next;
+	b->data = tmp2->data;
+	tmp2->data = tmp1;
 }
+

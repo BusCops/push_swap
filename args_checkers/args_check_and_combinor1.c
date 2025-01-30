@@ -47,7 +47,7 @@ void	arg_check_int(char **av)
 		while (av[i][j])
 		{
 			if ((av[i][j] < '0' || av[i][j] > '9')
-					&& av[i][j] != ' ' && av[i][j] != '-')
+					&& (av[i][j] != ' ' && av[i][j] != '-' && av[i][j] != '+'))
 			{
 				write(2, "Error\n", 6);
 				exit(2);

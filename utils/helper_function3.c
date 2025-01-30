@@ -29,18 +29,23 @@ int	ft_atoi(char *str, char **args, t_list *lst)
 	num = 0;
 	sign = 1;
 	i = 0;
-	if (str[0] == '-')
+	if (str[0] == '-' || str[0] == '+')
 	{
-		sign = -1;
+		if (str[0] == '-')
+			sign = -1;
 		i++;
+		if (str[i] < '0' || str[i] > '9')
+			wrong_number(args, lst);
 	}
-	while (str[i])
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
 		i++;
 		if (sign * num < INT_MIN || sign * num > INT_MAX)
 			wrong_number(args, lst);
 	}
+	if (str[i] != '\0')
+		wrong_number(args, lst);
 	return (num * sign);
 }
 
