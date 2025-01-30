@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:07:14 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 16:11:29 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:31:23 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	sb_no_write(t_list *b)
 	b->data = tmp2->data;
 	tmp2->data = tmp1;
 }
-

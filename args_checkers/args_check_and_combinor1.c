@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:58:29 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 15:10:42 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:41:15 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**args_check(int ac, char **av)
 {
 	char	**args;
 
+	arg_chek_empty(av);
 	arg_num_check(ac);
 	arg_check_int(av);
 	args = args_combinor(av);

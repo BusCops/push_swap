@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:33:34 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/23 16:26:41 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:44:32 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,24 @@ int	check_if_sorted(t_list *a)
 		a = a->next;
 	}
 	return (0);
+}
+
+void	arg_chek_empty(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j] == ' ')
+			j++;
+		if (av[i][j] == '\0')
+		{
+			write(2, "Error\n", 6);
+			exit(10);
+		}
+		i++;
+	}
 }

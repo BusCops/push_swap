@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:11:58 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 16:17:56 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:30:58 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	rr_no_write(t_list **a, t_list **b)
 {
 	ra_no_write(a);
 	rb_no_write(b);
-
 }

@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:45:19 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 16:31:41 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:32:47 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include "push_swap.h"
 
 char	*get_next_line(int fd);
 void	ss_no_write(t_list *a, t_list *b);

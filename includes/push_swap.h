@@ -6,7 +6,7 @@
 /*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:55:42 by abenzaho          #+#    #+#             */
-/*   Updated: 2025/01/30 15:08:36 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:41:59 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	best_move_to_a(t_list *a, t_Number_mv *num, int max);
 void	best_move_from_b(t_list *b, t_Number_mv *num);
 void	pre_sort(t_list **a, t_list **b, t_min_med_max values);
 void	check_move(t_Number_mv *num, t_Number_mv *tmp);
+void	arg_chek_empty(char **av);
 
 #endif

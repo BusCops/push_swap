@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenzaho <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abenzaho <abenzaho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 19:34:59 by abenzaho          #+#    #+#             */
-/*   Updated: 2024/11/22 19:35:01 by abenzaho         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:05:53 by abenzaho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen1(const char *s)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strdup1(char *s)
 {
 	int		i;
 	char	*str;
@@ -42,7 +42,7 @@ char	*ft_strdup(char *s)
 	return (str);
 }
 
-void	ft_copy(const char *src, char *dst)
+void	ft_copy1(const char *src, char *dst)
 {
 	int	i;
 
@@ -56,22 +56,22 @@ void	ft_copy(const char *src, char *dst)
 	return ;
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin1(char *s1, char *s2)
 {
 	char	*str;
 
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_strdup1(s2));
 	if (!s2)
-		return (ft_strdup(s1));
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+		return (ft_strdup1(s1));
+	str = (char *)malloc((ft_strlen1(s1) + ft_strlen1(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_copy(s1, str);
-	ft_copy(s2, str + ft_strlen(s1));
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	ft_copy1(s1, str);
+	ft_copy1(s2, str + ft_strlen1(s1));
+	str[ft_strlen1(s1) + ft_strlen1(s2)] = '\0';
 	return (str);
 }
 
