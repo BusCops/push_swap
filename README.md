@@ -43,6 +43,7 @@ To compile and run the `push_swap` project, you will need to have `gcc` and `mak
 2. Compile the project:
     ```
     make
+    make bonus
     ```
 
 This will generate the `push_swap` and `checker` executables.
@@ -55,15 +56,15 @@ Example:
 ./push_swap 4 3 2 1
 ```
 
-To verify that the operations correctly sort the list, you can use the `checker_linux` executable:
+To verify that the operations correctly sort the list, you can use the `checker` executable:
 ```
-ARG="4 3 2 1"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="4 3 2 1"; ./push_swap $ARG | ./checker $ARG
 ```
 
 If the list is sorted, `checker` will output `OK`. Otherwise, it will output `KO`.
 
 ## Examples
-Here are a few examples of how to use the `push_swap` and `checker_linux` programs:
+Here are a few examples of how to use the `push_swap` and `checker` programs:
 
 Example 1:
 ```
@@ -72,7 +73,7 @@ Example 1:
 
 Example 2:
 ```
-ARG=$(shuf -i 1-100 -n 10); ./push_swap $ARG | ./checker $ARG
+ARG="$(shuf -i 1-100 -n 10 | tr '\n' ' ')"; ./push_swap $ARG | ./checker $ARG
 ```
 ## Credits
 Developed by **abenzaho** as part of the 42 curriculum.
