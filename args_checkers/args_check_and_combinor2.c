@@ -43,6 +43,8 @@ void	check_doubles(t_list *lst)
 
 int	check_if_sorted(t_list *a)
 {
+	if (b)
+		return (-1);
 	if (!a)
 		return (0);
 	while (a->next)
